@@ -18,7 +18,7 @@ Sleep PROTO            :DWORD
 	; define you var
 
 	message db "Hello World!", 0
-	sConsoleTitle db 'My First Console Application',0
+	title db 'My First Console Application',0
 
 .code                                 ; all code must follow the .code directive
 main PROC								
@@ -29,11 +29,20 @@ main PROC
 	mov ebx,-5
 	add eax,ebx
 	
-	invoke SetConsoleTitleA, offset sConsoleTitle
+	invoke SetConsoleTitleA, offset title
 
 	invoke GetStdHandle, -11
 	mov hStdout,EAX
+	
 	invoke WriteConsoleA, hStdout, offset message, 12d, 0, 0
+	;or
+	;push 0
+	;push 0
+	;push 12d
+	;push offset message
+	;push hStdout
+	;call WriteConsoleA
+	
 	invoke Sleep, 2000d
 	
 	INVOKE ExitProcess, 0			
