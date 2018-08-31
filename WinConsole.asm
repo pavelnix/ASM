@@ -25,12 +25,8 @@ main PROC
     
 	;write asm code here 
 	LOCAL hStdout :DWORD
-	mov eax,3
-	mov ebx,-5
-	add eax,ebx
 	
 	invoke SetConsoleTitleA, offset title
-
 	invoke GetStdHandle, -11
 	mov hStdout,EAX
 	
